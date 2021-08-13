@@ -1,0 +1,62 @@
+---
+title: "305 Final"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(kableExtra)
+# Loading in the cleaned survey Data
+setwd("D:/sta305")
+survey_data <- read_csv("305_data1.csv")
+attach(survey_data)
+
+```
+
+
+*Code and data supporting this analysis is available at:* \
+https://github.com/leizikun/The-Prediction-of-2020-U.S.-Presidential-Election.git
+
+|     We are interested in predicting the popular vote outcome of the 2020 U.S. presidential election (Dassonneville & Tien, 2020). In this report, we used post-stratification analysis based on a logistic regression model to predict the result of the U.S. Presidential Election in 2020. The result suggests that 36.1% of voters are in favor of voting for Donald Trump.
+
+# Model
+
+## Model Specifics
+
+
+
+```{r}
+boil <- within(survey_data, Treatment<-paste(Drink_type,Heating_level))
+with(boil,tapply(Time_in_seconds,Treatment,mean))
+boxplot(Time_in_seconds~Treatment,data=boil)
+```
+
+
+```{r, include=TRUE}
+# Creating the Model
+model1 <- lm(Time_in_seconds ~ Treatment, data=boil)
+anova(model1)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
